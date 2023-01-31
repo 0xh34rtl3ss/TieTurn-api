@@ -15,6 +15,12 @@ def complete():
     phone = request.form.get('phone')
     branch = request.form.get('branch')
     datetime = request.form.get('datetime')
+    
+    date, time = datetime.split()
+    date = date.split('-')
+    date = f"{date[2]}-{date[1]}-{date[0]}"
+    time = time.split(':')[:2]
+    time = f"{time[0]}:{time[1]}"
         
     sender = 'ychqdcexqcqt26@gmail.com'
     emailPass = environ.get('EMAIL_PASS')
@@ -47,7 +53,7 @@ def complete():
         
     This is an automatic generated message, do not reply to this email.
         
-    """ % (name, random.randint(111,999) , name, phone,branch,datetime,datetime )
+    """ % (name, random.randint(111,999) , name, phone,branch,date,time )
         
     em = EmailMessage()
     em['from'] = sender
