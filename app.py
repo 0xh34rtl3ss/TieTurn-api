@@ -1,5 +1,6 @@
 from flask import Flask, request
 from os import environ 
+import os
 from email.message import EmailMessage
 import ssl
 import smtplib
@@ -21,7 +22,8 @@ branch = 'bahau'
 datetime = '00000313'
     
 sender = 'ychqdcexqcqt26@gmail.com'
-emailPass = environ.get('email_pass')
+emailPass = environ.get('EMAIL_PASS')
+print(emailPass)
 receiver = email
     
 subject = 'RHB Online Appointment'
@@ -53,16 +55,16 @@ This is an automatic generated message, do not reply to this email.
     
 """ % (name, random.randint(111,999) , name, phone,branch,datetime,datetime )
     
-em = EmailMessage()
-em['from'] = sender
-em['to'] = receiver
-em['subject'] = subject
-em.set_content(body)
+# em = EmailMessage()
+# em['from'] = sender
+# em['to'] = receiver
+# em['subject'] = subject
+# em.set_content(body)
     
-context = ssl.create_default_context()
-with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
-    smtp.login(sender,emailPass)
-    smtp.sendmail(sender,receiver,em.as_string())    
+# context = ssl.create_default_context()
+# with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
+#     smtp.login(sender,emailPass)
+#     smtp.sendmail(sender,receiver,em.as_string())    
     
     
 
